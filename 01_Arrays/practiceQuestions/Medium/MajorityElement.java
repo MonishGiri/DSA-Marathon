@@ -31,10 +31,21 @@ public class MajorityElement {
         //     }
         // }
 
+        // Optimal Approach : Moore's Voting Algorithm
+        int count = 0;
+        for(int i=0; i<arr.length; i++){
+            if(count == 0){
+                majorityEle = arr[i];
+                count = 1;
+            } 
+            else if(majorityEle != arr[i]) count --;
+            else count++;
+        }
+
         return majorityEle;
     }
     public static void main(String[] args) {
-        int[] arr = {3,2,1,2,2,2,1,1,1,1,1,};
+        int[] arr = {3,2,1,2,2,2,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3};
         System.out.println("Majority Element is: "+majorityElement(arr));
     }
 }
