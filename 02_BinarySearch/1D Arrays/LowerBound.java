@@ -1,5 +1,7 @@
 
 public class LowerBound {
+
+    // Lower bound of the element is equal to the number itself if present in the array, if not its next greater is the lower bound
     public static int findLowerBound(int[] arr, int target){
         int n = arr.length;
         int low = 0;
@@ -7,8 +9,8 @@ public class LowerBound {
         int lb = n;
 
         while(low<=high){
-            int mid = (low+high) / 2;
-            if(arr[mid] >= target){
+            int mid = (low+high) / 2; // Find the mid
+            if(arr[mid] >= target){ // if the element at mid is greater or equal to the target than reduce the search space by reducing high
                 lb = Math.min(lb, mid);
                 high = mid - 1;
             }
