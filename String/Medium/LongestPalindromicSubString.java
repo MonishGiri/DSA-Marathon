@@ -3,18 +3,31 @@ class LongestPalindromicSubString{
     public static String longestPalindrome(String s) {
         String result = "";
         if(s.length() == 1 ) return s;
-        int low = 0;
-        int high = s.length()-1;
-        while(low<high){
-            String temp = "";
-            if(checkPalindrome(s, low, high)){
-                temp = s.substring(low, high+1);
-                if(temp.length() > result.length()) result = temp;
-            }
-            if(low%2 == 0) low++;
-            else high--;
-        }
+        
+        // brute force approach: O(n2)
+        // for(int i=0; i<s.length(); i++){
+        //     for (int j = i+1; j < s.length()-1; j++) {
+        //         if(checkPalindrome(s, i, j)){
+        //             int length = j - i + 1;
+        //             if(length > result.length()){
+        //                 for(int k=i; k<=j; k++){
+        //                     result += s.charAt(k);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        int n = s.length();
+        int mid1 = n % 2 == 0 ? (n / 2) -1 : n / 2;
+        int mid2 = n / 2;
 
+        while(mid1<=mid2 && mid1>=0 && mid2<n){
+            if(checkPalindrome(s, mid1, mid2)){
+                result = s.substring(mid1, mid2+1);
+            }
+            mid1--;
+            mid2++;
+        }
         return result;
     }
 
@@ -27,6 +40,6 @@ class LongestPalindromicSubString{
         return true;
     }
     public static void main(String[] args){
-        System.out.println(longestPalindrome("cbbd"));
+        System.out.println(longestPalindrome("baba"));
     }
 }
