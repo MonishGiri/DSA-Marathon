@@ -8,6 +8,21 @@ class Node {
 }
 
 public class ListNodeClass {
+    public static void print(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.val+"->");
+            temp = temp.next;
+        }
+    }
+    
+    public static void printRecursively(Node head){
+        Node temp = head;
+        if(temp == null) return;
+        System.out.print(temp.val+"->");
+        printRecursively(temp.next);
+    }
+    
     public static void main(String[] args) {
         Node a = new Node(10);
         Node b = new Node(20);
@@ -18,5 +33,8 @@ public class ListNodeClass {
         c.next = d;
         Node e = new Node(50);
         d.next = e;
+
+        // print(a);
+        printRecursively(a);
     }
 }
